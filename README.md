@@ -1,48 +1,74 @@
-Telco Churn: Survival Analysis for Retention Strategy
-By Saksham
+<div align="center">
+  <h1>📊 Telco Churn: Survival & Strategic Retention</h1>
+  <p><i>Using Cox Proportional Hazards to predict Customer "Life Expectancy"</i></p>
+  <hr />
+</div>
 
-The Objective
-Most churn projects only predict if a customer will leave. For my MBA portfolio, I wanted to go deeper. Using Cox Proportional Hazards (CPH), I built a model that predicts when a customer is likely to reach a 50% churn risk threshold. This allows a marketing team to stop guessing and start timing their interventions.
+<h2>🎯 Project Objective</h2>
+<p>
+  Traditional churn models focus on <b>IF</b> a customer leaves. As an MBA student, I wanted to focus on <b>WHEN</b>. 
+  By implementing <b>Survival Analysis (CPH)</b>, this project identifies the specific milestones where 
+  customer risk peaks, allowing for a data-driven retention schedule rather than a reactive one.
+</p>
 
-Why Survival Analysis?
-During my initial EDA, I noticed that churn isn't random; it’s heavily tied to the "Contract Lifecycle."
+<h2>💡 Why Survival Analysis?</h2>
+<p>
+  During the EDA, it became clear that churn is not a static event—it is a race against time. 
+  I chose the <code>lifelines</code> library because it handles <b>Censored Data</b>—customers who 
+  are still active but may churn tomorrow—more accurately than standard Logistic Regression.
+</p>
 
-Month-to-month users are high-risk early on.
+<div style="background-color: #f9f9f9; padding: 15px; border-left: 5px solid #2196F3;">
+  <h3>🔄 The Recursive Milestone Logic</h3>
+  <p>
+    I developed a <b>Recursive Survival Chain</b> to track how risk "resets." If a customer survives 
+    their first 12 months, their 50% risk milestone shifts. This code visualizes those 
+    shifting horizons to help marketing teams understand the evolving customer lifecycle.
+  </p>
+</div>
 
-Two-year contract holders have a "grace period" but become high-risk as the contract nears expiration.
+<h2>📈 The "Borrowed Time" Metric</h2>
+<p>
+  The core output of this script is the <b>Remaining Tenure</b> column:
+</p>
+<ul>
+  <li><b>Positive Value:</b> The customer is statistically in a "Loyalty Zone."</li>
+  <li><b>Negative Value:</b> The customer is on <b>"Borrowed Time."</b> They have survived past their 
+  predicted 50% risk month. These are the <b>#1 Priority</b> for retention interventions.</li>
+</ul>
 
-Traditional classification (like Random Forest) misses this "time" element. I chose the lifelines library to model the actual tenure velocity of the customers.
+<h2>🛠️ Technical Workflow</h2>
+<table>
+  <tr>
+    <th>Phase</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><b>Data Cleaning</b></td>
+    <td>Handled <code>TotalCharges</code> formatting errors and handled nulls for model stability.</td>
+  </tr>
+  <tr>
+    <td><b>EDA</b></td>
+    <td>Visualized Churn Density vs. Tenure to identify "Danger Zones" (first 18 months).</td>
+  </tr>
+  <tr>
+    <td><b>Modeling</b></td>
+    <td>Trained a <b>Cox Proportional Hazards</b> model focusing on Contract types and Monthly Charges.</td>
+  </tr>
+  <tr>
+    <td><b>Reporting</b></td>
+    <td>Created a priority dashboard showing the <b>Most At-Risk Customers</b>.</td>
+  </tr>
+</table>
 
-The "Recursive Milestone" Logic
-One unique part of this code is the Recursive Survival Chain.
-Risk isn't a one-time calculation. If a customer survives the first 12 months, their risk profile resets. I wrote a recursive loop to track how that "Median Risk Month" shifts as a customer stays loyal.
+<h2>🚀 Setup & Usage</h2>
+<pre>
+1. Place 'WA_Fn-UseC_-Telco-Customer-Churn.csv' in the folder.
+2. Install: pip install pandas lifelines seaborn matplotlib
+3. Run: python churn_survival_model.py
+</pre>
 
-Key Feature: The "Remaining Tenure" Metric
-In the final report, you’ll see some negative values.
-
-Positive value: The customer is still in the "safe" zone.
-
-Negative value: This is what I call "Borrowed Time." These customers have already passed the month where 50% of their peers usually churn. They are statistically overdue to leave and should be the #1 priority for the sales team.
-
-Technical Workflow
-Cleaning: Handled TotalCharges inconsistencies (converting strings to floats) and managed missing values to ensure model stability.
-
-EDA: Visualized churn density using KDE plots to identify the "Danger Zones" in the customer lifecycle.
-
-Modeling: Implemented a semi-parametric Cox PH model, selecting features like MonthlyCharges and Contract which showed the highest correlation with attrition.
-
-Reporting: Structured the output to show Actual Status vs. Predicted Milestone, making it readable for non-technical stakeholders.
-
-How to Run
-Ensure you have the Telco dataset (WA_Fn-UseC_-Telco-Customer-Churn.csv) in the root directory.
-
-Install dependencies: pip install pandas lifelines seaborn matplotlib
-
-Run the script to generate the EDA plots and the Urgent Retention Priority List.
-
-Making it your own:
-The "I" Factor: Notice I used "I noticed," "I wanted," and "I wrote." This makes it clear these were your decisions.
-
-Business Language: Using terms like "Interventions," "Stakeholders," and "Retention Strategy" highlights your MBA background.
-
-Self-Correction: Mentioning the TotalCharges strings shows you actually spent time cleaning the data, which is a very "human" part of the process.
+<hr />
+<div align="center">
+  <sub>Developed by <b>Saksham</b> | MBA Analytics & Data Science</sub>
+</div>
