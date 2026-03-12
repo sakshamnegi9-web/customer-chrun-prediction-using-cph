@@ -1,17 +1,17 @@
 <div align="center">
-  <h1>📊 Telco Churn: Survival & Strategic Retention</h1>
+  <h1> Telco Churn: Survival & Strategic Retention</h1>
   <p><i>Using Cox Proportional Hazards to predict Customer "Life Expectancy"</i></p>
   <hr />
 </div>
 
-<h2>🎯 Project Objective</h2>
+<h2> Project Objective</h2>
 <p>
   Traditional churn models focus on <b>IF</b> a customer leaves. As an MBA student, I wanted to focus on <b>WHEN</b>. 
   By implementing <b>Survival Analysis (CPH)</b>, this project identifies the specific milestones where 
   customer risk peaks, allowing for a data-driven retention schedule rather than a reactive one.
 </p>
 
-<h2>💡 Why Survival Analysis?</h2>
+<h2> Why Survival Analysis?</h2>
 <p>
   During the EDA, it became clear that churn is not a static event—it is a race against time. 
   I chose the <code>lifelines</code> library because it handles <b>Censored Data</b>—customers who 
@@ -19,7 +19,7 @@
 </p>
 
 <div style="background-color: #f9f9f9; padding: 15px; border-left: 5px solid #2196F3;">
-  <h3>🔄 The Recursive Milestone Logic</h3>
+  <h3> The Recursive Milestone Logic</h3>
   <p>
     I developed a <b>Recursive Survival Chain</b> to track how risk "resets." If a customer survives 
     their first 12 months, their 50% risk milestone shifts. This code visualizes those 
@@ -27,7 +27,7 @@
   </p>
 </div>
 
-<h2>📈 The "Borrowed Time" Metric</h2>
+<h2>The "Borrowed Time" Metric</h2>
 <p>
   The core output of this script is the <b>Remaining Tenure</b> column:
 </p>
@@ -37,7 +37,7 @@
   predicted 50% risk month. These are the <b>#1 Priority</b> for retention interventions.</li>
 </ul>
 
-<h2>🛠️ Technical Workflow</h2>
+<h2> Technical Workflow</h2>
 <table>
   <tr>
     <th>Phase</th>
@@ -61,7 +61,7 @@
   </tr>
 </table>
 
-<h2>🚀 Setup & Usage</h2>
+<h2> Setup & Usage</h2>
 <pre>
 1. Place 'WA_Fn-UseC_-Telco-Customer-Churn.csv' in the folder.
 2. Install: pip install pandas lifelines seaborn matplotlib
